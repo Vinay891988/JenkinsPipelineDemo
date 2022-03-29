@@ -14,8 +14,12 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                timeout(time: 1, unit: 'MINUTES') {
+                    retry(5) {
                 echo 'Deploying the Code'
+               }
             }
+          }
         }
         stage('Test') {
             steps {
@@ -26,11 +30,6 @@ pipeline {
             steps {
                 echo 'Releasing the code.'
             }
-        }
-        post {
-             always {
-                 emailext body: 'A Test EMail', recipientProviders: [[$class: 'vinaykmr008@gmail.com'], [$class: 'vinaykmr008@gmail.com']], subject: 'Test'
-             }
-        }
+        }     
     }
 }
