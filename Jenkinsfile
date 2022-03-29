@@ -14,11 +14,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                timeout(time: 1, unit: 'MINUTES') {
-                    retry(5) {
-                echo 'Deploying the Code
-               }
-            }
+                
+                echo 'Deploying the Code'
           }
         }
         stage('Test') {
