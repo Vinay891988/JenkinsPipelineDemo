@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage("A") {
             options {
-                timeout(time: 1, unit: "SECONDS")
+                timeout(time: 10, unit: "SECONDS")
              }
          steps {
               ehcho "started stage A"
