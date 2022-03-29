@@ -8,6 +8,7 @@ pipeline {
              }
          steps {
               ehcho "started stage A"
+              sleep(time: 5, unit: "SECONDS")
               }
             }
       stage("B") {
