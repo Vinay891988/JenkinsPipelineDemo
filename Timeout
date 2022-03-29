@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    stages {
+        stage("A") {
+            options {
+                timeout(time: 2, unit: "SECONDS")
+             }
+         steps {
+              ehcho "started stage A"
+              sleep (time: 5, unit: "SECONDS")
+              }
+            }
+      Stage("B") {
+          steps {
+          echo "Started Stage B"
+          }
+        }
+       }
+      } 
