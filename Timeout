@@ -4,17 +4,19 @@ pipeline {
     stages {
         stage("A") {
             options {
-                timeout(time: 60, unit: "SECONDS")
-             }
-         steps {
-              ehcho "started stage A"
-              sleep(time: 5, unit: "SECONDS")
-              }
+                timeout(time: 3, unit: "SECONDS")
             }
-      stage("B") {
-          steps {
-          echo "Started Stage B"
-          }
+
+            steps {
+                echo "Started stage A"
+                sleep(time: 5, unit: "SECONDS")
+            }
         }
-       }
-      } 
+
+        stage("B") {
+            steps {
+                echo "Started stage B"
+            }
+        }
+    }
+}
