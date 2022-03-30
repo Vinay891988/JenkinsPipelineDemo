@@ -1,11 +1,10 @@
 stage('deploy-test') {
-   try {
-     build 'yourJob'
-   } catch(error) {
-     echo "First build failed, let's retry if accepted"
-     retry(2) {
+   waitUntil {
+     try {
+       build 'yourJob'
+     } catch(error) {
         input "Retry the job ?"
-        build 'yourJob'
+        false
      }
    }
 }
