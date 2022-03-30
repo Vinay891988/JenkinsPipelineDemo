@@ -2,7 +2,7 @@ stage('deploy-test') {
  def retryAttempt = 0
  retry(2) {
     if (retryAttempt > 0) {
-       sleep(1000 * 2 + 2000 * retryAttempt)
+       sleep(2 * 2 + 2000 * retryAttempt)
     }
 
     retryAttempt = retryAttempt + 1
