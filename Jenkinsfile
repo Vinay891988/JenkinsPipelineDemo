@@ -14,7 +14,6 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                
                 echo 'Deploying the Code'
           }
         }
@@ -23,15 +22,14 @@ pipeline {
                 echo 'Testing the Code'
             }
         }
-        stage('Release') {
+        
+        stage('Release approval'){
+    input "Deploy to prod?"
+         }
+        stage('Production') {
             steps {
-                echo 'Releasing the code.'
+                echo 'Releasing the code to production.'
             }
         } 
-        post {
-        always {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
-        }
-      }
     }
 }
