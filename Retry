@@ -1,10 +1,12 @@
 stage('deploy-test') {
-   waitUntil {
-     try {
-       build 'yourJob'
-     } catch(error) {
-        input "Retry the job ?"
-        false
-     }
-   }
+ def retryAttempt = 0
+ retry(2) {
+    if (retryAttempt > 0) {
+       sleep(1000 * 2 + 2000 * retryAttempt)
+    }
+
+    retryAttempt = retryAttempt + 1
+    input "Retry the job ?"
+    build 'yourJob'
+ }
 }
