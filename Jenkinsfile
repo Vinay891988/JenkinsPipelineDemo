@@ -20,12 +20,13 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing the Code'
-            }
-        }
-        
+     }
+ }
         stage('Release approval'){
-    input "Deploy to prod?"
+            steps {
+             input "Deploy to prod?"
          }
+        }
         stage('Production') {
             steps {
                 echo 'Releasing the code to production.'
