@@ -1,12 +1,20 @@
-stage('deploy-test') {
- def retryAttempt = 0
- retry(2) {
-    if (retryAttempt > 0) {
-       sleep(2 * 2 + 4 * retryAttempt)
+pipeline {
+    agent any
+    options {
+    retry(2)
+    {
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+      }
     }
-
-    retryAttempt = retryAttempt + 1
-    input "Retry the job ?"
-    build 'yourJob'
- }
-}
+        stage('Build') {
+            steps {
+                echo 'Building the code'
+            }
+        }
+      }
+   }    
